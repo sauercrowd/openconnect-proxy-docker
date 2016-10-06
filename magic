@@ -1,0 +1,37 @@
+#!/bin/bash
+OPENCONNECT_URL=
+OPENCONNECT_USER=
+OPENCONNECT_PASSWORD=
+
+PROXY_PORT=3128
+
+start_container() {
+  docker run -d --privileged -e PROXY_PORT=$PROXY_PORT -e OPENCONNECT_URL=$OPENCONNECT_URL -e OPENCONNECT_USER=$OPENCONNECT_USER -e OPENCONNECT_PASSWORD=$OPENCONNECT_PASSWORD -p 3128:3128 -v `pwd`/passwords:/etc/squid/passwords vpnproxy
+}
+
+proxy_ssh() {
+  ssh -o ProxyCommand="corkscrew 127.0.0.1 $PROXY_PORT %h %p ~/.ssh/proxyauth" $ARGSTRING
+}
+
+count=0
+ARGSSTRING=
+for arg in $*
+do
+  if [ ! $count == 0 ]
+  then
+    ARGSTRING+=$arg
+  fi
+  count=$((count+1))
+done
+
+case $1 in
+  ssh)
+	proxy_ssh $ARGSTRING
+	;;
+  start-container)
+	start_container
+	;;
+  *)
+	echo "please provide a valid command: ssh, start-container"
+	;;
+esac
