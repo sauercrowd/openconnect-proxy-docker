@@ -2,11 +2,11 @@
 OPENCONNECT_URL=
 OPENCONNECT_USER=
 OPENCONNECT_PASSWORD=
-
 PROXY_PORT=3128
+IMAGE="jonadev95/openconnect-proxy-docker"
 
 start_container() {
-  docker run -d --privileged -e PROXY_PORT=$PROXY_PORT -e OPENCONNECT_URL=$OPENCONNECT_URL -e OPENCONNECT_USER=$OPENCONNECT_USER -e OPENCONNECT_PASSWORD=$OPENCONNECT_PASSWORD -p 3128:3128 -v `pwd`/passwords:/etc/squid/passwords vpnproxy
+  docker run -d --privileged -e PROXY_PORT=$PROXY_PORT -e OPENCONNECT_URL=$OPENCONNECT_URL -e OPENCONNECT_USER=$OPENCONNECT_USER -e OPENCONNECT_PASSWORD=$OPENCONNECT_PASSWORD -p 3128:3128 -v `pwd`/passwords:/etc/squid/passwords $IMAGE
 }
 
 proxy_ssh() {
