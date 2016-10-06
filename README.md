@@ -30,3 +30,6 @@ If you want to use ssh via the vpn connection, execute
 Example:
 
     ./magic ssh ubuntu@myinternalip
+
+## Building
+    docker build -t vpnproxy .
