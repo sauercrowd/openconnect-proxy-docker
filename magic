@@ -13,6 +13,14 @@ proxy_ssh() {
   ssh -o ProxyCommand="corkscrew 127.0.0.1 $PROXY_PORT %h %p ~/.ssh/proxyauth" $ARGSTRING
 }
 
+
+adduser() {
+  htpasswd ./passwords $1
+}
+
+
+
+
 count=0
 ARGSSTRING=
 for arg in $*
@@ -31,7 +39,10 @@ case $1 in
   start-container)
 	start_container
 	;;
+  adduser)
+        adduser $2
+        ;;
   *)
-	echo "please provide a valid command: ssh, start-container"
+	echo "please provide a valid command: ssh [SSH_ARGS], adduser [USERNAME], start-container"
 	;;
 esac
