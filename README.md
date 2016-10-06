@@ -6,6 +6,7 @@ It should make the painful openconnect client a little less painful.
 ## Prerequisites
 
 Install htpasswd and corkscrew
+
     $ sudo apt-get install apache-utils corkscrew
 
 ## Running
@@ -21,7 +22,7 @@ Your container should be now connected via VPN and the proxy server should be up
 Now you need to add a user. Do that with ```./magic adduser USERNAME``` and enter a password.
 
 Your ready to use the proxy server with your username and your password.
-Host for the proxy is (obviously) localhost and the port is set according to the first lines in ```magic```
+Host for the proxy is (obviously) localhost and the port is set according to the first lines in ```magic```.
 
 If you want to use ssh via the vpn connection, execute
 
@@ -32,4 +33,8 @@ Example:
     ./magic ssh ubuntu@myinternalip
 
 ## Building
-    docker build -t vpnproxy .
+Execute
+
+    docker build -t imagename .
+
+and edit the ```IMAGE``` variable in ```magic``` according to the imagename.
