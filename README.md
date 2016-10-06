@@ -24,7 +24,9 @@ Your ready to use the proxy server with your username and your password.
 Host for the proxy is (obviously) localhost and the port is set according to the first lines in ```magic```
 
 If you want to use ssh via the vpn connection, execute
+
     ./magic ssh [ARGS]
 
 Example:
+
     ./magic ssh ubuntu@myinternalip
