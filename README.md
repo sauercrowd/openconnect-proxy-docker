@@ -24,7 +24,17 @@ Now you need to add a user. Do that with ```./magic adduser USERNAME``` and ente
 Your ready to use the proxy server with your username and your password.
 Host for the proxy is (obviously) localhost and the port is set according to the first lines in ```magic```.
 
-If you want to use ssh via the vpn connection, execute
+If you want to use ssh via the vpn connection,
+first create a file at ```~/.ssh/proxyauth``` where you add a line in the format ```proxyuser:proxypassword```.
+User and password are the details which you created with ```magic adduser```
+
+Example:
+
+    $ cat ~/.ssh/proxyauth
+    sauercrowd:mysupersecretpassword
+
+After that 
+execute
 
     ./magic ssh [ARGS]
 
